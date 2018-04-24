@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let id;
   let isRunning = false;
   const interval = 10;
+  let startTime;
 
   const start = document.getElementById('start');
   const stop = document.getElementById('stop');
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isRunning) {
       return;
     }
+    startTime = new Date();
     isRunning = true;
 
     id = setInterval(function() {

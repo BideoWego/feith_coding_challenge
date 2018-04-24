@@ -1,0 +1,11 @@
+
+body {
+  background: whitesmoke;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.stopwatch {
+  padding: 15px;
+  margin-top: 15px;
+  background: #fff;
+}
