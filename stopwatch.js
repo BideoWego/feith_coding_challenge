@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   const stopInterval = () => {
-    isRunning = false;
     lastDiff = new Date().getTime() - startTime + lastDiff;
     clearInterval(id);
   };
@@ -45,6 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   stop.addEventListener('click', function(e) {
+    if (!isRunning) {
+      return;
+    }
+    isRunning = false;
     stopInterval();
   });
 
