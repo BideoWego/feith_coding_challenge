@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let isRunning = false;
   const interval = 10;
   let startTime;
+  let diff;
 
   const start = document.getElementById('start');
   const stop = document.getElementById('stop');
@@ -17,13 +18,16 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isRunning) {
       return;
     }
-    startTime = new Date();
+
+    if (!startTime) {
+      startTime = new Date().getTime();
+    }
     isRunning = true;
 
     id = setInterval(function() {
-      time += interval;
-      let secondsNum = Math.floor(time / 1000);
-      let millisecondsNum = time % 1000 / 10;
+      diff = new Date().getTime() - startTime;
+      let secondsNum = Math.floor(diff / 1000);
+      let millisecondsNum = Math.floor(diff % 1000 / 10);
       seconds.innerHTML = secondsNum;
       milliseconds.innerHTML = millisecondsNum.toString().padStart(2, '0');
     }, interval);
@@ -31,11 +35,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   stop.addEventListener('click', function(e) {
     isRunning = false;
+    diff = new Date().getTime() - startTime;
     clearInterval(id);
   });
 
   reset.addEventListener('click', function(e) {
-    time = 0;
+    startTime = null;
     seconds.innerHTML = 0;
     milliseconds.innerHTML = '00';
   });
